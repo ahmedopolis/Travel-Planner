@@ -19,6 +19,14 @@
 
 ## Design
 
+List of APIs: GeoNames, Weatherbit, Pixabay
+
+GeoNames Api Docs: http://www.geonames.org/export/web-services.html
+
+Weatherbit Api Docs: https://www.weatherbit.io/api
+
+Pixabay Api Docs: https://pixabay.com/api/docs/
+
 ## Instructions
 
 ### Download repository files
