@@ -15,3 +15,46 @@ const http = require("http");
 
 // HTTP request logger middleware for node.js
 const morgan = require("morgan");
+
+// Type1: In-memory only datastore (no need to load the database)
+var dataStore = require("nedb");
+
+// Start up an instance of app
+const app = express();
+
+// External module to use fetch in Node js
+const fetch = require("node-fetch");
+
+/* Dependencies & Middleware */
+const bodyParser = require("body-parser");
+const cors = require("cors");
+
+//Here we are configuring express to use body-parser as middle-ware.
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Cors for cross origin allowance for proxy server
+app.use(cors());
+
+// Initialize the main project folder
+app.use(express.static("website"));
+
+// Create new database object and load database
+const database = new dataStore({
+  filename: "src/server/traveldatabase.db",
+  autoload: true,
+});
+database.loadDatabase();
+
+// Setup server
+const port = 8000;
+const hostName = "localhost";
+const localServer = http.createServer(app);
+
+// Spin up the server
+localServer.listen(port, listening);
+
+// Callback to debug
+function listening() {
+  console.log(`Server is running on http://${hostName}: ${port}`);
+}
