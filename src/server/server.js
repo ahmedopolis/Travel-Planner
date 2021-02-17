@@ -13,9 +13,6 @@ const express = require("express");
 // Module to enable request via hyper text transfer protocol
 const http = require("http");
 
-// HTTP request logger middleware for node.js
-const morgan = require("morgan");
-
 // Type1: In-memory only datastore (no need to load the database)
 var dataStore = require("nedb");
 
@@ -39,7 +36,7 @@ app.use(cors());
 // Initialize the main project folder
 app.use(express.static("website"));
 
-// Create new database object and load database
+//Create new database object and load database
 const database = new dataStore({
   filename: "src/server/traveldatabase.db",
   autoload: true,
