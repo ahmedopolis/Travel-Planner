@@ -18,12 +18,60 @@
     <main>
       <section>
         <form>
+          <label for="current-city"> Current City:</label>
           <input
-            id="city"
+            id="current-city"
+            value=""
             type="text"
             name="city"
-            placeholder="What is your destination?"
+            placeholder="What is your current city?"
+            required
           />
+          <label for="destination"> Destination:</label>
+          <input
+            id="destination"
+            value=""
+            type="text"
+            name="city"
+            placeholder="What is your desired destination?"
+            required
+          />
+          <label for="start-date"> Start date:</label>
+          <input
+            id="start-date"
+            value=""
+            type="date"
+            name="start-date"
+            required
+          />
+          <label for="end-date"> End date:</label>
+          <input id="end-date" value="" type="date" name="end-date" required />
+          <label for="number-adults"> Number of adults:</label>
+          <input
+            id="number-adults"
+            value=""
+            type="number"
+            name="number-adults"
+            placeholder="how many adults on this trip?"
+            required
+          />
+          <label for="number-children"> Number of children:</label>
+          <input
+            id="number-children"
+            value=""
+            type="number"
+            name="number-children"
+            placeholder="How many children on this trip?"
+            required
+          />
+          <label for="notes">Do you have notes on this trip?</label>
+          <textarea
+            id="notes"
+            placeholder="Enter your notes here."
+            rows="9"
+            cols="52"
+          ></textarea>
+          <button id="generate" type="submit">Generate</button>
         </form>
       </section>
     </main>
