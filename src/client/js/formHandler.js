@@ -1,6 +1,43 @@
-import { validURL } from "./validURL";
-
 function runAction() {
+  const submitButton = document.querySelector("#submit-button");
+  submitButton.addEventListener("click", async (e) => {
+    e.preventDefault();
+    console.log("::: Form Submitted :::");
+    const currentCity = document.querySelector("#current-city").value;
+    const destination = document.querySelector("#destination").value;
+    const startDate = document.querySelector("#start-date").value;
+    const endDate = document.querySelector("#end-date").value;
+    const numberAdults = document.querySelector("#number-adults").value;
+    const numberChildren = document.querySelector("#number-children").value;
+    const notes = document.querySelector("#notes").value;
+    userData = {
+      currentCity: currentCity,
+      destination: destination,
+      startDate: startDate,
+      endDate: endDate,
+      numberAdults: numberAdults,
+      numberChildren: numberChildren,
+      notes: notes,
+    };
+    printUserData(userData);
+    const hostName = "localhost";
+    const port = 8080;
+    const localDataURl = `http://${hostName}:${port}/apiData`;
+    console.log(`The localHost URL -> ${localDataURl}`);
+  });
+
+  // Function to print user data
+  function printUserData(projectData) {
+    console.log("::: User Data Received :::");
+    console.log(`Current City -> ${projectData.currentCity}.`);
+    console.log(`Destination -> ${projectData.destination}.`);
+    console.log(`startDate -> ${projectData.startDate}.`);
+    console.log(`endDate-> ${projectData.endDate}.`);
+    console.log(`numberAdults -> ${projectData.numberAdults}.`);
+    console.log(`numberChildren -> ${projectData.numberChildren}.`);
+    console.log(`notes -> ${projectData.notes}.`);
+  }
+
   /* Function to POST data */
   async function postData(url = "", data) {
     const res = await fetch(url, {
@@ -44,4 +81,4 @@ function loadStarter() {
 
 loadStarter();
 
-export { runAction };
+//export { runAction };
