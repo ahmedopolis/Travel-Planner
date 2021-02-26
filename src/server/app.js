@@ -5,7 +5,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 // Setup empty JS object to act as endpoint for all routes
-let projectData = {};
+let travelPlannerData = {};
 
 // Express to run server and routes
 const express = require("express");
@@ -42,3 +42,11 @@ const database = new dataStore({
   autoload: true,
 });
 database.loadDatabase();
+
+// Initialize all route with a callback function
+app.get("/apiData", sendData);
+
+// Callback function to complete GET '/all'
+function sendData(req, res) {
+  res.send(projectData);
+}

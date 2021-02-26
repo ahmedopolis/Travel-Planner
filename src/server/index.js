@@ -2,7 +2,7 @@ const app = require("./app");
 
 // Setup server
 const port = process.env.Server_Port || 8000;
-const hostName = "localhost";
+const hostName = process.env.Host_Name || "localhost";
 const localServer = http.createServer(app);
 
 // Spin up the server
