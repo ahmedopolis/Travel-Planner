@@ -1,4 +1,4 @@
-const local_app = require("./app");
+const app = require("./app");
 
 // Setup server
 const port = process.env.Server_Port || 8000;
