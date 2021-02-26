@@ -106,12 +106,26 @@ Use the following command to add a light-weight module that brings window.fetch 
 npm install node-fetch
 ```
 
-### Install 'cors'
+### Add NeDB module
 
-Use the following line, to add cors.
+Use the following command to add the NeDB module:
 
 ```bash
-npm i cors morgan
+npm i nedb
+```
+
+### List of all needed npm commands
+
+All commands needed are found below:
+
+```bash
+npm init
+npm i node express
+npm install dotenv
+npm i cors
+npm install --save-dev jest
+npm install node-fetch
+npm i nedb
 ```
 
 ## Examples
