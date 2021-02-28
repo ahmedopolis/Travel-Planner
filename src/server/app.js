@@ -44,9 +44,47 @@ const database = new dataStore({
 database.loadDatabase();
 
 // Initialize all route with a callback function
-app.get("/apiData", sendData);
+app.get("/apiData", sendTravelData);
 
 // Callback function to complete GET '/all'
-function sendData(req, res) {
+function sendTravelData(req, res) {
   res.send(projectData);
 }
+
+/* POST ROUTES */
+
+// Post route for geonames
+
+// Post route for weatherbit
+
+// Post route for pixabay
+
+// Post route for skyscanner
+/* fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/referral/v1.0/%7Bcountry%7D/%7Bcurrency%7D/%7Blocale%7D/%7Boriginplace%7D/%7Bdestinationplace%7D/%7Boutboundpartialdate%7D/%7Binboundpartialdate%7D?shortapikey=ra66933236979928&apiKey=%7Bshortapikey%7D", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-key": "7c6d439b1amshb536815fbe5b02fp1ab6b6jsn8384a821f581",
+		"x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com"
+	}
+})
+.then(response => {
+	console.log(response);
+})
+.catch(err => {
+	console.error(err);
+}); */
+
+// Post route for Hotels
+/* fetch("https://hotels4.p.rapidapi.com/locations/search?query=new%20york&locale=en_US", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-key": "7c6d439b1amshb536815fbe5b02fp1ab6b6jsn8384a821f581",
+		"x-rapidapi-host": "hotels4.p.rapidapi.com"
+	}
+})
+.then(response => {
+	console.log(response);
+})
+.catch(err => {
+	console.error(err);
+}); */
