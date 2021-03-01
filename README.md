@@ -19,13 +19,17 @@
 
 ## Design
 
-List of APIs: GeoNames, Weatherbit, Pixabay
+List of APIs: GeoNames, Weatherbit, Pixabay, Skyscanner, Hotels
 
 GeoNames Api Docs: http://www.geonames.org/export/web-services.html
 
 Weatherbit Api Docs: https://www.weatherbit.io/api
 
 Pixabay Api Docs: https://pixabay.com/api/docs/
+
+Skyscanner Api Docs: https://skyscanner.github.io/slate/#api-documentation
+
+Hotels Api Docs: https://rapidapi.com/apidojo/api/hotels4
 
 ## Instructions
 
