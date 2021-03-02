@@ -27,10 +27,6 @@ Weatherbit Api Docs: https://www.weatherbit.io/api
 
 Pixabay Api Docs: https://pixabay.com/api/docs/
 
-Skyscanner Api Docs: https://skyscanner.github.io/slate/#api-documentation
-
-Hotels Api Docs: https://rapidapi.com/apidojo/api/hotels4
-
 ## Instructions
 
 ### Download repository files
