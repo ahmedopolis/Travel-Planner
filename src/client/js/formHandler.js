@@ -7,16 +7,12 @@ function runAction() {
     const destination = document.querySelector("#destination").value;
     const startDate = document.querySelector("#start-date").value;
     const endDate = document.querySelector("#end-date").value;
-    const numberAdults = document.querySelector("#number-adults").value;
-    const numberChildren = document.querySelector("#number-children").value;
     const notes = document.querySelector("#notes").value;
     userData = {
       currentCity: currentCity,
       destination: destination,
       startDate: startDate,
       endDate: endDate,
-      numberAdults: numberAdults,
-      numberChildren: numberChildren,
       notes: notes,
     };
     printUserData(userData);
@@ -33,8 +29,6 @@ function runAction() {
     console.log(`Destination -> ${projectData.destination}.`);
     console.log(`startDate -> ${projectData.startDate}.`);
     console.log(`endDate-> ${projectData.endDate}.`);
-    console.log(`numberAdults -> ${projectData.numberAdults}.`);
-    console.log(`numberChildren -> ${projectData.numberChildren}.`);
     console.log(`notes -> ${projectData.notes}.`);
   }
 
