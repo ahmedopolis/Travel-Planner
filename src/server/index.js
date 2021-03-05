@@ -1,5 +1,8 @@
 const app = require("./app");
 
+// Module to enable request via hyper text transfer protocol
+const http = require("http");
+
 // Setup server
 const port = process.env.Server_Port || 8000;
 const hostName = process.env.Host_Name || "localhost";

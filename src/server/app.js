@@ -10,11 +10,8 @@ let travelPlannerData = {};
 // Express to run server and routes
 const express = require("express");
 
-// Module to enable request via hyper text transfer protocol
-const http = require("http");
-
 // Type1: In-memory only datastore (no need to load the database)
-var dataStore = require("nedb");
+//var dataStore = require("nedb");
 
 // Start up an instance of app
 const app = express();
@@ -37,11 +34,11 @@ app.use(cors());
 app.use(express.static("website"));
 
 //Create new database object and load database
-const database = new dataStore({
+/* const database = new dataStore({
   filename: "src/server/traveldatabase.db",
   autoload: true,
 });
-database.loadDatabase();
+database.loadDatabase(); */
 
 // Initialize all route with a callback function
 app.get("/apiData", sendTravelData);
