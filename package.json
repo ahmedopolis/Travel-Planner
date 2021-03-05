@@ -1,0 +1,39 @@
+{
+  "name": "travel-planner",
+  "version": "1.0.0",
+  "description": "Travel application for single user",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aimogue/Travel-Planner.git"
+  },
+  "keywords": [
+    "Travel",
+    "Webpack",
+    "Node.js",
+    "Express.js",
+    "SASS"
+  ],
+  "author": "Ahmed Ibrahim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aimogue/Travel-Planner/issues"
+  },
+  "homepage": "https://github.com/aimogue/Travel-Planner#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "http": "^0.0.1-security",
+    "nedb": "^1.8.0",
+    "node": "^15.10.0",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
