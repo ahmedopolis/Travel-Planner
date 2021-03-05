@@ -11,7 +11,7 @@ let travelPlannerData = {};
 const express = require("express");
 
 // Type1: In-memory only datastore (no need to load the database)
-//var dataStore = require("nedb");
+let dataStore = require("nedb");
 
 // Start up an instance of app
 const app = express();
@@ -50,8 +50,30 @@ function sendTravelData(req, res) {
 
 /* POST ROUTES */
 
+fucntion fetchENVData(){
+  const apiPixabayKey = process.env.Pixabay_Api_Key || "No Pixabay API key";
+  const apiGeoNamesKey = process.env. || "No Pixabay API key"
+  console.log(`The Pixabay API key is the following: ${apiKey}`);
+}
+
 // Post route for geonames
 
 // Post route for weatherbit
 
 // Post route for pixabay
+
+async function getImageFromPixabay(countryName) {
+  
+  const apiURL = `https://pixabay.com/api/?key=${apiKey}&q=${countryName}`;
+}
+
+/* Function to GET Project Data */
+async function getData(url = "") {
+  const res = await fetch(url);
+  try {
+    const Data = await res.json();
+    return Data;
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}

@@ -27,9 +27,9 @@ function runAction() {
     console.log("::: User Data Received :::");
     console.log(`Current City -> ${projectData.currentCity}.`);
     console.log(`Destination -> ${projectData.destination}.`);
-    console.log(`startDate -> ${projectData.startDate}.`);
-    console.log(`endDate-> ${projectData.endDate}.`);
-    console.log(`notes -> ${projectData.notes}.`);
+    console.log(`Start Date -> ${projectData.startDate}.`);
+    console.log(`End Date-> ${projectData.endDate}.`);
+    console.log(`Notes -> ${projectData.notes}.`);
   }
 
   /* Function to POST data */
