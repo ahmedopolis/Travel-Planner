@@ -19,7 +19,7 @@
 
 ## Design
 
-List of APIs: GeoNames, Weatherbit, Pixabay, Skyscanner, Hotels
+List of APIs: GeoNames, Weatherbit, Pixabay
 
 GeoNames Api Docs: http://www.geonames.org/export/web-services.html
 
@@ -123,8 +123,10 @@ npm init
 npm i node express
 npm install dotenv
 npm i cors
+npm i http
 npm install --save-dev jest
 npm install node-fetch
+
 npm i nedb
 ```
 
