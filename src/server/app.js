@@ -50,11 +50,18 @@ function sendTravelData(req, res) {
 
 /* POST ROUTES */
 
-fucntion fetchENVData(){
+function fetchENVData() {
+  console.log("::: Api keys & username from dotenv file :::");
   const apiPixabayKey = process.env.Pixabay_Api_Key || "No Pixabay API key";
-  const apiGeoNamesKey = process.env. || "No Pixabay API key"
-  console.log(`The Pixabay API key is the following: ${apiKey}`);
+  console.log(`The Pixabay API key is the following: ${apiPixabayKey}`);
+  const apiGeoNamesKey = process.env.GeoNames_Username || "No Geonames API key";
+  console.log(`The Geonames API key is the following: ${apiGeoNamesKey}`);
+  const apiWeatherbitKey =
+    process.env.Weatherbit_Api_key || "No Weatherbit API key";
+  console.log(`The Geonames API key is the following: ${apiWeatherbitKey}\n`);
 }
+
+fetchENVData();
 
 // Post route for geonames
 
@@ -63,7 +70,6 @@ fucntion fetchENVData(){
 // Post route for pixabay
 
 async function getImageFromPixabay(countryName) {
-  
   const apiURL = `https://pixabay.com/api/?key=${apiKey}&q=${countryName}`;
 }
 
