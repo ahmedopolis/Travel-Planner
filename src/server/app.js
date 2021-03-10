@@ -2,6 +2,14 @@
 if (process.env.NODE_ENV !== "production") {
   const dotenv = require("dotenv");
   dotenv.config();
+  console.log("::: Api keys & username from dotenv file :::");
+  const apiPixabayKey = process.env.Pixabay_Api_Key || "No Pixabay API key";
+  console.log(`The Pixabay API key is the following: ${apiPixabayKey}`);
+  const apiGeoNamesKey = process.env.GeoNames_Username || "No Geonames API key";
+  console.log(`The Geonames API key is the following: ${apiGeoNamesKey}`);
+  const apiWeatherbitKey =
+    process.env.Weatherbit_Api_key || "No Weatherbit API key";
+  console.log(`The Geonames API key is the following: ${apiWeatherbitKey}\n`);
 }
 
 // Setup empty JS object to act as endpoint for all routes
@@ -50,19 +58,6 @@ function sendTravelData(req, res) {
 
 /* POST ROUTES */
 
-function fetchENVData() {
-  console.log("::: Api keys & username from dotenv file :::");
-  const apiPixabayKey = process.env.Pixabay_Api_Key || "No Pixabay API key";
-  console.log(`The Pixabay API key is the following: ${apiPixabayKey}`);
-  const apiGeoNamesKey = process.env.GeoNames_Username || "No Geonames API key";
-  console.log(`The Geonames API key is the following: ${apiGeoNamesKey}`);
-  const apiWeatherbitKey =
-    process.env.Weatherbit_Api_key || "No Weatherbit API key";
-  console.log(`The Geonames API key is the following: ${apiWeatherbitKey}\n`);
-}
-
-fetchENVData();
-
 // Post route for geonames
 
 // Post route for weatherbit
@@ -70,7 +65,7 @@ fetchENVData();
 // Post route for pixabay
 
 async function getImageFromPixabay(countryName) {
-  const apiURL = `https://pixabay.com/api/?key=${apiKey}&q=${countryName}`;
+  const apiURL = `https://pixabay.com/api/?key=${apiPixabayKey}&q=${countryName}`;
 }
 
 /* Function to GET Project Data */
