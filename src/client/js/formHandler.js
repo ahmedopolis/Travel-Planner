@@ -3,13 +3,11 @@ function runAction() {
   submitButton.addEventListener("click", async (e) => {
     e.preventDefault();
     console.log("::: Form Submitted :::");
-    const currentCity = document.querySelector("#current-city").value;
     const destination = document.querySelector("#destination").value;
     const startDate = document.querySelector("#start-date").value;
     const endDate = document.querySelector("#end-date").value;
     const notes = document.querySelector("#notes").value;
     userData = {
-      currentCity: currentCity,
       destination: destination,
       startDate: startDate,
       endDate: endDate,
@@ -25,7 +23,6 @@ function runAction() {
   // Function to print user data
   function printUserData(projectData) {
     console.log("::: User Data Received :::");
-    console.log(`Current City -> ${projectData.currentCity}.`);
     console.log(`Destination -> ${projectData.destination}.`);
     console.log(`Start Date -> ${projectData.startDate}.`);
     console.log(`End Date-> ${projectData.endDate}.`);
@@ -90,6 +87,13 @@ function mainHeadingRandomColorEdit() {
     const randomColor = Math.floor(Math.random() * 16777215).toString(16);
     return "#" + randomColor;
   }
+}
+
+// Calculate length of trip
+function trip_length(startDate, endDate) {
+  const ONE_DAY = 1000 * 60 * 60 * 24;
+  const differenceMs = Math.abs(startDate - endDate);
+  return Math.round(differenceMs / ONE_DAY);
 }
 
 // Function to append the 'runAction' function at after load.

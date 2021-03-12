@@ -60,6 +60,39 @@ function sendTravelData(req, res) {
 
 // Post route for geonames
 
+let travelCoordinatesData = {};
+
+app.post("/coordinates", fetchCoordinatesFromGeonames);
+
+function combineGeonamesURL(city) {
+  const geonamesBaseURL = "http://api.geonames.org/searchJSON?";
+  const localApiGeoNamesKey = process.env.GeoNames_Username;
+  return `${geonamesBaseURL}q=${city}&maxRows=1&username=${localApiGeoNamesKey}`;
+}
+
+async function fetchCoordinatesFromGeonames(req, res) {
+  const userStartCity = encodeURI(req.body.destination);
+  const fullGeonamesURL = combineGeonamesURL(userStartCity);
+  console.log(
+    `::: The concatenated API's URL is the following: ${fullGeonamesURL}. :::`
+  );
+  getData(fullGeonamesURL)
+    .then((data) => {
+      travelCoordinatesData = {
+        name: data.name,
+        country: data.country,
+        latitude: data.geonames[0].lat,
+        longitude: data.geonames[0].lng,
+      };
+      /* console.log(
+        `::: The latitude and longitude of the destination are respectively: ${travelCoordinatesData}. :::`
+      ); */
+    })
+    .then((newTravelCoordinatesData) => {
+      res.send(newTravelCoordinatesData);
+    });
+}
+
 // Post route for weatherbit
 
 // Post route for pixabay
