@@ -48,6 +48,9 @@ app.use(express.static("website"));
 });
 database.loadDatabase(); */
 
+var moment = require("moment"); // require
+moment().format();
+
 // Initialize all route with a callback function
 app.get("/apiData", sendTravelData);
 
@@ -94,6 +97,19 @@ async function fetchCoordinatesFromGeonames(req, res) {
 }
 
 // Post route for weatherbit
+
+// Find array of dates
+
+function getDates(startDate, endDate) {
+  let dateArray = [];
+  let currentDate = moment(startDate);
+  endDate = moment(endDate);
+  while (currentDate <= endDate) {
+    dateArray.push(moment(currentDate).format("YYYY-MM-DD"));
+    currentDate = moment(currentDate).add(1, "days");
+  }
+  return dateArray;
+}
 
 // Post route for pixabay
 
