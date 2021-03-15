@@ -114,6 +114,14 @@ Use the following command to add the NeDB module:
 npm i nedb
 ```
 
+### Add moment.js
+
+Use the following command to add the moment.js module:
+
+```bash
+npm install moment --save
+```
+
 ### List of all needed npm commands
 
 All commands needed are found below:
@@ -126,6 +134,7 @@ npm i cors
 npm i http
 npm install --save-dev jest
 npm install node-fetch
+npm install moment --save
 
 npm i nedb
 ```
