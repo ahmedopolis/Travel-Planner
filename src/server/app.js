@@ -48,7 +48,7 @@ app.use(express.static("website"));
 });
 database.loadDatabase(); */
 
-var moment = require("moment"); // require
+let moment = require("moment"); // require
 moment().format();
 
 // Initialize all route with a callback function
@@ -57,6 +57,23 @@ app.get("/apiData", sendTravelData);
 // Callback function to complete GET '/all'
 function sendTravelData(req, res) {
   res.send(projectData);
+}
+
+// Find array of dates
+function getDates(startDate, endDate) {
+  let dateArray = [];
+  let currentDate = moment(startDate);
+  endDate = moment(endDate);
+  while (currentDate <= endDate) {
+    dateArray.push(moment(currentDate).format("YYYY-MM-DD"));
+    currentDate = moment(currentDate).add(1, "days");
+  }
+  return dateArray;
+}
+
+// Calculate length of trip
+function tripLength(dateArray) {
+  return dateArray.length;
 }
 
 /* POST ROUTES */
@@ -69,7 +86,7 @@ app.post("/coordinates", fetchCoordinatesFromGeonames);
 
 function combineGeonamesURL(city) {
   const geonamesBaseURL = "http://api.geonames.org/searchJSON?";
-  const localApiGeoNamesKey = process.env.GeoNames_Username;
+  const localApiGeoNamesKey = apiGeoNamesKey;
   return `${geonamesBaseURL}q=${city}&maxRows=1&username=${localApiGeoNamesKey}`;
 }
 
@@ -98,17 +115,12 @@ async function fetchCoordinatesFromGeonames(req, res) {
 
 // Post route for weatherbit
 
-// Find array of dates
+let travelWeatherData = {};
 
-function getDates(startDate, endDate) {
-  let dateArray = [];
-  let currentDate = moment(startDate);
-  endDate = moment(endDate);
-  while (currentDate <= endDate) {
-    dateArray.push(moment(currentDate).format("YYYY-MM-DD"));
-    currentDate = moment(currentDate).add(1, "days");
-  }
-  return dateArray;
+function combineGeonamesURL(latitude, longitude, durationTrip) {
+  const weatherbitBaseURL = "https://api.weatherbit.io/v2.0/forecast/daily";
+  const localApiWeatherbitKey = apiWeatherbitKey;
+  return `${weatherbitBaseURL}?&lat=${latitude}&lon=${longitude}&days=${durationTrip}&key=${localApiWeatherbitKey}`;
 }
 
 // Post route for pixabay

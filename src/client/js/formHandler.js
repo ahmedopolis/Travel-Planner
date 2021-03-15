@@ -89,13 +89,6 @@ function mainHeadingRandomColorEdit() {
   }
 }
 
-// Calculate length of trip
-function trip_length(startDate, endDate) {
-  const ONE_DAY = 1000 * 60 * 60 * 24;
-  const differenceMs = Math.abs(startDate - endDate);
-  return Math.round(differenceMs / ONE_DAY);
-}
-
 // Function to append the 'runAction' function at after load.
 function loadStarter() {
   if (document.readyState === "complete") {
