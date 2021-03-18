@@ -90,6 +90,15 @@ function combineGeonamesURL(city) {
   return `${geonamesBaseURL}q=${city}&maxRows=1&username=${localApiGeoNamesKey}`;
 }
 
+//Function to print travel data
+function printGeonamesProjectData(projectData) {
+  console.log("::: Geonames Data Requested Loaded :::");
+  console.log(`Name -> ${projectData.name}.`);
+  console.log(`Country -> ${projectData.country}.`);
+  console.log(`Latitude -> ${projectData.latitude}.`);
+  console.log(`longitude-> ${projectData.longitude}.`);
+}
+
 async function fetchCoordinatesFromGeonames(req, res) {
   const userStartCity = encodeURI(req.body.destination);
   const fullGeonamesURL = combineGeonamesURL(userStartCity);
@@ -104,9 +113,7 @@ async function fetchCoordinatesFromGeonames(req, res) {
         latitude: data.geonames[0].lat,
         longitude: data.geonames[0].lng,
       };
-      /* console.log(
-        `::: The latitude and longitude of the destination are respectively: ${travelCoordinatesData}. :::`
-      ); */
+      printGeonamesProjectData(travelCoordinatesData);
     })
     .then((newTravelCoordinatesData) => {
       res.send(newTravelCoordinatesData);
@@ -117,10 +124,34 @@ async function fetchCoordinatesFromGeonames(req, res) {
 
 let travelWeatherData = {};
 
-function combineGeonamesURL(latitude, longitude, durationTrip) {
+app.post("/weatherData", fetchCoordinatesFromWeatherbit);
+
+function combineWeatherbitURL(latitude, longitude, durationTrip) {
   const weatherbitBaseURL = "https://api.weatherbit.io/v2.0/forecast/daily";
   const localApiWeatherbitKey = apiWeatherbitKey;
   return `${weatherbitBaseURL}?&lat=${latitude}&lon=${longitude}&days=${durationTrip}&key=${localApiWeatherbitKey}`;
+}
+
+async function fetchCoordinatesFromWeatherbit(req, res) {
+  const localLatitude = encodeURI(req.body.latitude);
+  const localLongitude = encodeURI(req.body.longitude);
+  const fullGeonamesURL = combineWeatherbitURL(userStartCity);
+  console.log(
+    `::: The concatenated API's URL is the following: ${fullGeonamesURL}. :::`
+  );
+  getData(fullGeonamesURL)
+    .then((data) => {
+      travelCoordinatesData = {
+        name: data.name,
+        country: data.country,
+        latitude: data.geonames[0].lat,
+        longitude: data.geonames[0].lng,
+      };
+      printGeonamesProjectData(travelCoordinatesData);
+    })
+    .then((newTravelCoordinatesData) => {
+      res.send(newTravelCoordinatesData);
+    });
 }
 
 // Post route for pixabay
