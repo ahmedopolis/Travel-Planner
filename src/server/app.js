@@ -38,8 +38,8 @@ app.use(bodyParser.json());
 // Cors for cross origin allowance for proxy server
 app.use(cors());
 
-// Initialize the main project folder
-app.use(express.static("website"));
+// Connect the bundled folder
+app.use(express.static("dist"));
 
 //Create new database object and load database
 /* const database = new dataStore({
@@ -49,6 +49,7 @@ app.use(express.static("website"));
 database.loadDatabase(); */
 
 let moment = require("moment"); // require
+const { encode } = require("node:punycode");
 moment().format();
 
 // Initialize all route with a callback function
@@ -160,14 +161,35 @@ let travelPicturesData = {};
 
 app.post("/picturesData", fetchCoordinatesFromPixabay);
 
-function combineCityPixabayPictureURL(geographyTerm) {
+function combinePixabayPictureURL(geographyTerm) {
   const pixabayBaseURL = "https://pixabay.com/api/?";
   const localApiPixabayKey = apiPixabayKey;
   return `${pixabayBaseURL}key=${localApiPixabayKey}&q=${geographyTerm}&image_type=photo&orientation=horizontal&per_page=3&pretty=true`;
 }
 
-async function getImageFromPixabay(countryName) {
-  const apiURL = `https://pixabay.com/api/?key=${apiPixabayKey}&q=${countryName}`;
+async function getImageFromPixabay(cityName, countryName) {
+  const cityName = encodeURI(req.body.city);
+  const countryName = encodeURI(req.body.country);
+  const cityNameModified = cityName.replace("%20", "+");
+  const countryNameModified = countryName.replace("%20", "+");
+  const fullCityPictureAPI = combinePixabayPictureURL(cityNameModified);
+  const fullCountryPictureAPI = combinePixabayPictureURL(countryNameModified);
+  console.log(
+    `::: The concatenated API's URL for the city pictures is the following: ${fullCityPictureAPI}. :::`
+  );
+  console.log(
+    `::: The concatenated API's URL for the country pictures is the following: ${fullCountryPictureAPI}. :::`
+  );
+  getData(fullCityPictureAPI).then((newCityPicturesData) => {
+    if (newCityPicturesData.totalHits > 0) {
+      res.send(newCityPicturesData);
+      console.log("No image was found by Pixabay.");
+    } else {
+      getData(fullCountryPictureAPI).then((newCountryPicturesData) => {
+        res.send(newCountryPicturesData);
+      });
+    }
+  });
 }
 
 /* Function to GET Project Data */
