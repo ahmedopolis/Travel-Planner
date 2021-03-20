@@ -8,7 +8,6 @@
     <meta name="keywords" content="Travel Planner, Multiple API, Full-Stack" />
     <meta name="author" content="Ahmed Ibrahim" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../styles/main.css" />
   </head>
   <body>
     <header>
@@ -54,6 +53,14 @@
         2021 &#169; WoRlDnOmAd INC. All Right reserved.
       </div>
     </footer>
-    <script language="JavaScript" src="../js/formHandler.js"></script>
+    <script>
+      // It checks that service workers are supported
+      if ("serviceWorker" in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/service-worker.js");
+        });
+      }
+    </script>
   </body>
 </html>
