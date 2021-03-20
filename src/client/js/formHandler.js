@@ -103,4 +103,4 @@ function loadStarter() {
 
 loadStarter();
 
-//export { runAction };
+export { runAction };
