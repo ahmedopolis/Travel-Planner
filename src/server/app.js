@@ -59,23 +59,6 @@ function sendTravelData(req, res) {
   res.send(projectData);
 }
 
-// Find array of dates
-function getDates(startDate, endDate) {
-  let dateArray = [];
-  let currentDate = moment(startDate);
-  endDate = moment(endDate);
-  while (currentDate <= endDate) {
-    dateArray.push(moment(currentDate).format("YYYY-MM-DD"));
-    currentDate = moment(currentDate).add(1, "days");
-  }
-  return dateArray;
-}
-
-// Calculate length of trip
-function tripLength(dateArray) {
-  return dateArray.length;
-}
-
 /* POST ROUTES */
 
 // Post route for geonames
@@ -132,29 +115,56 @@ function combineWeatherbitURL(latitude, longitude, durationTrip) {
   return `${weatherbitBaseURL}?&lat=${latitude}&lon=${longitude}&days=${durationTrip}&key=${localApiWeatherbitKey}`;
 }
 
+function getDates(startDate, endDate) {
+  let dateArray = [];
+  let currentDate = moment(startDate);
+  endDate = moment(endDate);
+  while (currentDate <= endDate) {
+    dateArray.push(moment(currentDate).format("YYYY-MM-DD"));
+    currentDate = moment(currentDate).add(1, "days");
+  }
+  return dateArray;
+}
+
+function tripLength(dateArray) {
+  return dateArray.length;
+}
+
 async function fetchCoordinatesFromWeatherbit(req, res) {
-  const localLatitude = encodeURI(req.body.latitude);
-  const localLongitude = encodeURI(req.body.longitude);
-  const fullGeonamesURL = combineWeatherbitURL(userStartCity);
-  console.log(
-    `::: The concatenated API's URL is the following: ${fullGeonamesURL}. :::`
+  const localLatitude = req.body.latitude;
+  const localLongitude = req.body.longitude;
+  const localStartDate = req.body.startDate;
+  const localEndDate = req.body.endDate;
+  const arrayDates = getDates(localStartDate, localEndDate);
+  const durationTrip = tripLength(arrayDates);
+  const fullWeatherbitURL = combineWeatherbitURL(
+    localLatitude,
+    localLongitude,
+    durationTrip
   );
-  getData(fullGeonamesURL)
+  console.log(
+    `::: The concatenated API's URL is the following: ${fullWeatherbitURL}. :::`
+  );
+  getData(fullWeatherbitURL)
     .then((data) => {
-      travelCoordinatesData = {
-        name: data.name,
-        country: data.country,
-        latitude: data.geonames[0].lat,
-        longitude: data.geonames[0].lng,
-      };
-      printGeonamesProjectData(travelCoordinatesData);
+      travelWeatherData = data;
     })
-    .then((newTravelCoordinatesData) => {
-      res.send(newTravelCoordinatesData);
+    .then((newTravelWeatherData) => {
+      res.send(newTravelWeatherData);
     });
 }
 
 // Post route for pixabay
+
+let travelPicturesData = {};
+
+app.post("/picturesData", fetchCoordinatesFromPixabay);
+
+function combineCityPixabayPictureURL(geographyTerm) {
+  const pixabayBaseURL = "https://pixabay.com/api/?";
+  const localApiPixabayKey = apiPixabayKey;
+  return `${pixabayBaseURL}key=${localApiPixabayKey}&q=${geographyTerm}&image_type=photo&orientation=horizontal&per_page=3&pretty=true`;
+}
 
 async function getImageFromPixabay(countryName) {
   const apiURL = `https://pixabay.com/api/?key=${apiPixabayKey}&q=${countryName}`;
