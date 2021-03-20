@@ -4,12 +4,15 @@
         "autoload",
         "geo",
         "geonames",
+        "globalconfig",
         "ibrahim",
         "names",
         "pixabay",
         "rapidapi",
         "skyscanner",
+        "toolchain",
         "traveldatabase",
+        "userconfig",
         "weatherbit"
     ]
 }
