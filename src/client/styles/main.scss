@@ -9,11 +9,6 @@ html {
     background-size: cover;
 }
 
-h1 {
-    font-family: Monoton;
-    font-size: 70px;
-    margin: 0.2em;
-  }
 
   title{
     display: none;
@@ -24,7 +19,6 @@ html{
 }
 
 body {
-    background-color: $secondary-color;
     font-size: 1.7rem;
     min-height: 100vh;
     align-items: center;
@@ -35,15 +29,9 @@ body {
     justify-items: center;
     grid-template-columns: auto;
     grid-template-areas: 
-    "about about about"
     "form form form"
     "results results results";
     margin-top: 5px;
-}
-
-#about-section{
-    grid-area: about;
-    
 }
 
 #form-section{
