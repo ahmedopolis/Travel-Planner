@@ -218,10 +218,18 @@ npm config --global edit
 
 ### Add 'serviceWorker'
 
-Add 'workbox-webpack-plugin via the following command:
+Add 'workbox-webpack-plugin' via the following command:
 
 ```bash
 npm install workbox-webpack-plugin --save-dev
+```
+
+### Add 'punycode'
+
+Add 'punycode' via the following command:
+
+```bash
+npm install punycode --save
 ```
 
 ### List of all needed npm commands
