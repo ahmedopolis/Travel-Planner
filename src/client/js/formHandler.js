@@ -2,12 +2,14 @@ function runAction() {
   const submitButton = document.querySelector("#submit-button");
   submitButton.addEventListener("click", async (e) => {
     e.preventDefault();
+    const currentDate = new Date().toISOString().slice(0, 10);
     console.log("::: Form Submitted :::");
     const destination = document.querySelector("#destination").value;
     const startDate = document.querySelector("#start-date").value;
     const endDate = document.querySelector("#end-date").value;
     const notes = document.querySelector("#notes").value;
-    userData = {
+    const userData = {
+      currentDate: currentDate,
       destination: destination,
       startDate: startDate,
       endDate: endDate,
@@ -23,6 +25,7 @@ function runAction() {
   // Function to print user data
   function printUserData(projectData) {
     console.log("::: User Data Received :::");
+    console.log(`Current Date -> ${projectData.currentDate}.`);
     console.log(`Destination -> ${projectData.destination}.`);
     console.log(`Start Date -> ${projectData.startDate}.`);
     console.log(`End Date-> ${projectData.endDate}.`);
