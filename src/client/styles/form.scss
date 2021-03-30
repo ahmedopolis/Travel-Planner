@@ -1,23 +1,35 @@
 $primary-color: red;
 $secondary-color: #f2f2f2;
-$tertiary-color: darkmagenta;
+$tertiary-color: lightgreen;
 
 #form-section {
     grid-area: form;
     display: flex;
     justify-content:center;
     flex-direction:column;
+    align-items: center;
+    background-color: lightcoral;
+    border: black solid 3px;
+     border-radius: 5px;
+     width: auto;
+     padding: 1%;
+}
+#input-section {
+    display: flex;
+    justify-content:center;
+    flex-direction:column;
+    align-items: center;
 }
 
-#form-title{
-    color: greenyellow;
-    font-weight: Bold;
-    font-size: 30px;
-    text-align: center;
-    margin: 3%;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: rebeccapurple;
-    text-align: center;
+#input-section > * {
+    margin: 1%;
+    width: 90%;
+}
+
+.section-title{
+    font-size: 50px;
+    margin:0;
+    margin-bottom: 1%;
 }
 
 #submit-button{
@@ -28,6 +40,7 @@ $tertiary-color: darkmagenta;
     font-family: 'Oswald', sans-serif;
     font-size: 25px;
     font-weight: bold;
+    margin: 1%;
 
     &:hover {
         background-color: $tertiary-color;
@@ -37,14 +50,26 @@ $tertiary-color: darkmagenta;
 input {
     background-color: $primary-color;
     border-radius: 5px;
-    padding: 5px 20px;
+    padding: 6px;
     color: $secondary-color;
     font-family: 'Oswald', sans-serif;
     font-size: 15px;
     font-weight: bold;
-    width: 100%;
     line-height: 16px;
-    margin: 5px 0;
+
+    &:hover {
+        background-color: $tertiary-color;
+    }
+}
+
+#notes {
+    background-color: red;
+    color: $secondary-color;
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 16px;
+    padding: 1%;
 
     &:hover {
         background-color: $tertiary-color;

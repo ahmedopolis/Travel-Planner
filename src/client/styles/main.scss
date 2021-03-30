@@ -14,14 +14,9 @@ html {
     display: none;
 }
 
-html{
-    font-size: 70%;
-}
-
 body {
     font-size: 1.7rem;
     min-height: 100vh;
-    align-items: center;
 }
 
 #app-container{
@@ -31,10 +26,7 @@ body {
     grid-template-areas: 
     "form form form"
     "results results results";
-    margin: 10%;
-}
-
-
-#results-section{
-    grid-area: results;
+    color:beige;
+    font-size: 800;
+    font-weight: bolder;
 }
