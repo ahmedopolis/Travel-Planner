@@ -12,6 +12,9 @@ if (process.env.NODE_ENV !== "production") {
   console.log(`The Geonames API key is the following: ${apiWeatherbitKey}\n`);
 }
 
+// Module to enable request via hyper text transfer protocol
+const http = require("http");
+
 // Setup empty JS object to act as endpoint for all routes
 let travelPlannerData = {};
 
@@ -49,7 +52,7 @@ app.use(express.static("dist"));
 database.loadDatabase(); */
 
 let moment = require("moment"); // require
-const { encode } = require("node:punycode");
+const { encode } = require("punycode");
 moment().format();
 
 // Initialize all route with a callback function
@@ -159,7 +162,7 @@ async function fetchCoordinatesFromWeatherbit(req, res) {
 
 let travelPicturesData = {};
 
-app.post("/picturesData", fetchCoordinatesFromPixabay);
+app.post("/picturesData", fetchImagesFromPixabay);
 
 function combinePixabayPictureURL(geographyTerm) {
   const pixabayBaseURL = "https://pixabay.com/api/?";
@@ -167,9 +170,7 @@ function combinePixabayPictureURL(geographyTerm) {
   return `${pixabayBaseURL}key=${localApiPixabayKey}&q=${geographyTerm}&image_type=photo&orientation=horizontal&per_page=3&pretty=true`;
 }
 
-async function getImageFromPixabay(cityName, countryName) {
-  const cityName = encodeURI(req.body.city);
-  const countryName = encodeURI(req.body.country);
+async function fetchImagesFromPixabay(cityName, countryName) {
   const cityNameModified = cityName.replace("%20", "+");
   const countryNameModified = countryName.replace("%20", "+");
   const fullCityPictureAPI = combinePixabayPictureURL(cityNameModified);
@@ -201,4 +202,17 @@ async function getData(url = "") {
   } catch (error) {
     console.error("Error:", error);
   }
+}
+
+// Setup server
+const port = process.env.Server_Port || 8000;
+const hostName = process.env.Host_Name || "localhost";
+const localServer = http.createServer(app);
+
+// Spin up the server
+localServer.listen(port, listening);
+
+// Callback to debug
+function listening() {
+  console.log(`Server is running on http://${hostName}: ${port}`);
 }
