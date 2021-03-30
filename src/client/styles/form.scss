@@ -1,0 +1,76 @@
+$primary-color: red;
+$secondary-color: #f2f2f2;
+$tertiary-color: darkmagenta;
+
+#form-section {
+    grid-area: form;
+    display: flex;
+    justify-content:center;
+    flex-direction:column;
+}
+
+#form-title{
+    color: greenyellow;
+    font-weight: Bold;
+    font-size: 30px;
+    text-align: center;
+    margin: 3%;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rebeccapurple;
+    text-align: center;
+}
+
+#submit-button{
+    cursor: pointer;
+    background-color: $primary-color;
+    border-radius: 5px;
+    color: $secondary-color;
+    font-family: 'Oswald', sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+
+    &:hover {
+        background-color: $tertiary-color;
+    }
+}
+
+input {
+    background-color: $primary-color;
+    border-radius: 5px;
+    padding: 5px 20px;
+    color: $secondary-color;
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    width: 100%;
+    line-height: 16px;
+    margin: 5px 0;
+
+    &:hover {
+        background-color: $tertiary-color;
+    }
+}
+
+/* Style for Placeholder Text*/
+::placeholder { 
+    color: $secondary-color;
+    font-size: 15px;
+    font-weight: bold;
+} 
+
+#results-section{
+    margin-top: 7px;
+    font-size: 32px;
+    padding: 5px;
+}
+
+#results{
+    margin-top: 10px;
+    background-color: $primary-color;
+    color: $secondary-color;
+    padding: 15px;
+    box-shadow: 5px 10px lightgray;
+}
+
+
+

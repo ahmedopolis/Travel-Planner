@@ -1,4 +1,4 @@
-$primary-color: #5754ff;
+$primary-color: red;
 $secondary-color: #f2f2f2;
 $tertiary-color: darkmagenta;
 
@@ -31,12 +31,9 @@ body {
     grid-template-areas: 
     "form form form"
     "results results results";
-    margin-top: 5px;
+    margin: 10%;
 }
 
-#form-section{
-    grid-area: form;
-}
 
 #results-section{
     grid-area: results;
