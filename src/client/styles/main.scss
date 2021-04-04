@@ -9,14 +9,14 @@ html {
     background-size: cover;
 }
 
-
-  title{
+title{
     display: none;
 }
 
 body {
     font-size: 1.7rem;
-    height:fit-content;
+    height: fit-content;
+    align-items: center;
 }
 
 #app-container{
@@ -25,7 +25,8 @@ body {
     grid-template-columns: auto;
     grid-template-areas: 
     "form form form"
-    "results results results";
+    "results results results"
+    "footer footer footer";
     color:beige;
     font-size: 800;
     font-weight: bolder;

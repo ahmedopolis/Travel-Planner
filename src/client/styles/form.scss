@@ -10,10 +10,11 @@ $tertiary-color: darkgreen;
     align-items: center;
     background-color: lightcoral;
     border: black solid 3px;
-     border-radius: 5px;
-     width: auto;
-     padding: 1%;
+    border-radius: 5px;
+    width: auto;
+    padding: 2%;
 }
+
 #input-section {
     display: flex;
     justify-content:center;
@@ -82,20 +83,4 @@ input {
     font-size: 15px;
     font-weight: bold;
 } 
-
-#results-section{
-    margin-top: 7px;
-    font-size: 32px;
-    padding: 5px;
-}
-
-#results{
-    margin-top: 10px;
-    background-color: $primary-color;
-    color: $secondary-color;
-    padding: 15px;
-    box-shadow: 5px 10px lightgray;
-}
-
-
 

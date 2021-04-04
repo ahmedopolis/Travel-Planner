@@ -1,3 +1,66 @@
 #results-section{
     grid-area: results;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: auto;
+    grid-template-areas: 
+    "result1 result1 result1"
+    "result2 result2 result2";
 }
+
+#first-results-section {
+    grid-area: result1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: lightgreen;
+    border: black solid 3px;
+    border-radius: 5px;
+    margin-top: 3.5%;
+    padding: 2%;
+}
+
+#pixabay-image img {
+    width: 400px;
+    height: 300px;
+    margin: 3%;
+    border: black solid 3px;
+    border-radius: 5px;
+}
+
+#first-results-text {
+    margin-left: 5%;
+
+    strong {
+        color:cadetblue;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black;
+    }
+
+    #trip-result-title{
+        font-size: 50px;
+        text-align: center;
+        color: lightsalmon;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black;
+    }
+}
+
+#second-results-section {
+    grid-area: result2;
+    display: flex;
+    width: 800px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.weather-summary {
+    text-align: center;
+    background-color: lightskyblue;
+    border: black solid 3px;
+    border-radius: 5px;
+    margin: 3%;
+    padding: 2%;
+}
+
+
