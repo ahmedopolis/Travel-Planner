@@ -60,7 +60,7 @@ app.get("/apiData", sendTravelData);
 
 // Callback function to complete GET '/all'
 function sendTravelData(req, res) {
-  res.send(projectData);
+  res.send(travelPlannerData);
 }
 
 /* POST ROUTES */
@@ -87,7 +87,18 @@ function printGeonamesProjectData(projectData) {
 }
 
 async function fetchCoordinatesFromGeonames(req, res) {
-  const userStartCity = encodeURI(req.body.destination);
+  const destination = req.body.destination;
+  const startDate = req.body.startDate;
+  const endDate = req.body.endDate;
+  const notes = req.body.notes;
+  const userData = {
+    currentDate: currentDate,
+    destination: destination,
+    startDate: startDate,
+    endDate: endDate,
+    notes: notes,
+  };
+  const userStartCity = encodeURI(destination);
   const fullGeonamesURL = combineGeonamesURL(userStartCity);
   console.log(
     `::: The concatenated API's URL is the following: ${fullGeonamesURL}. :::`
@@ -95,10 +106,12 @@ async function fetchCoordinatesFromGeonames(req, res) {
   getData(fullGeonamesURL)
     .then((data) => {
       travelCoordinatesData = {
+        STATUS: "Success",
         name: data.name,
         country: data.country,
         latitude: data.geonames[0].lat,
         longitude: data.geonames[0].lng,
+        userData: userData,
       };
       printGeonamesProjectData(travelCoordinatesData);
     })

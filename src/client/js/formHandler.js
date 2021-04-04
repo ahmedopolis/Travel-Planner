@@ -18,9 +18,40 @@ function runAction() {
     printUserData(userData);
     const hostName = "localhost";
     const port = 8080;
-    const localDataURl = `http://${hostName}:${port}/apiData`;
-    console.log(`The localHost URL -> ${localDataURl}`);
+    const geonamesSubfolder = "coordinates";
+    const weatherbitSubfolder = "weatherData";
+    const pixabaySubfolder = "picturesData";
+    const getDataSubfolder = "apiData";
+    const localDataGeonamesURl = concatenateApiFilePath(
+      hostName,
+      port,
+      geonamesSubfolder
+    );
+    const localDataWeatherbitURl = concatenateApiFilePath(
+      hostName,
+      port,
+      weatherbitSubfolder
+    );
+    const localDataPixabayURl = concatenateApiFilePath(
+      hostName,
+      port,
+      pixabaySubfolder
+    );
+    const localGETApiURl = concatenateApiFilePath(
+      hostName,
+      port,
+      getDataSubfolder
+    );
+    console.log(`The Geonames' URL -> ${localDataGeonamesURl}`);
+    console.log(`The Weatherbit's URL -> ${localDataWeatherbitURl}`);
+    console.log(`The Pixabay's URL -> ${localDataPixabayURl}`);
+    console.log(`The GET Api's URL -> ${localGETApiURl}`);
   });
+
+  // Function to concatenate the file path for an api route
+  function concatenateApiFilePath(hostName, port, subfolder) {
+    return `http://${hostName}:${port}/${subfolder}`;
+  }
 
   // Function to print user data
   function printUserData(projectData) {
@@ -30,6 +61,22 @@ function runAction() {
     console.log(`Start Date -> ${projectData.startDate}.`);
     console.log(`End Date-> ${projectData.endDate}.`);
     console.log(`Notes -> ${projectData.notes}.`);
+  }
+
+  // Async function to chain promises
+  async function processUserData(
+    geonamesDataURL,
+    weatherbitDataURL,
+    pixabayDataURL,
+    getDataURL,
+    userData
+  ) {
+    let postDataReturn = await postData(dataURL, data).then(async () => {});
+  }
+
+  // Function to concatenate Weatherbit icon URL
+  function concatenateWeatherbitIconURL(iconCode) {
+    return `https://www.weatherbit.io/static/img/icons/${iconCode}.png`;
   }
 
   /* Function to POST data */
