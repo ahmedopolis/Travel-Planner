@@ -9,7 +9,7 @@ module.exports = {
   mode: "development",
   devtool: "source-map",
   devServer: {
-    port: 8000,
+    port: 3000,
   },
   module: {
     rules: [
