@@ -14,7 +14,7 @@
     flex-direction: row;
     align-items: center;
     background-color: lightgreen;
-    border: black solid 3px;
+    border: darkmagenta solid 3px;
     border-radius: 5px;
     margin-top: 3.5%;
     padding: 2%;
@@ -24,21 +24,23 @@
     width: 400px;
     height: 300px;
     margin: 3%;
-    border: black solid 3px;
+    border: darkmagenta solid 3px;
     border-radius: 5px;
 }
 
 #first-results-text {
     margin-left: 5%;
+    padding: 2%;
+    margin-bottom: 3%;
 
     strong {
         color:cadetblue;
-        -webkit-text-stroke-width: 1px;
-        -webkit-text-stroke-color: black;
+        -webkit-text-stroke-width: 0.5px;
+        -webkit-text-stroke-color: darkmagenta;
     }
 
     #trip-result-title{
-        font-size: 50px;
+        font-size: 45px;
         text-align: center;
         color: lightsalmon;
         -webkit-text-stroke-width: 1px;
@@ -59,6 +61,7 @@
     background-color: lightskyblue;
     border: black solid 3px;
     border-radius: 5px;
+    margin-top: 1%;
     margin: 3%;
     padding: 2%;
 }
