@@ -16,7 +16,12 @@ if (process.env.NODE_ENV !== "production") {
 const http = require("http");
 
 // Setup empty JS object to act as endpoint for all routes
-let travelPlannerData = {};
+let travelPlannerData = {
+  userData: userData,
+  travelCoordinatesData: travelCoordinatesData,
+  travelWeatherData: travelWeatherData,
+  travelPicturesData: travelPicturesData
+};
 
 // Express to run server and routes
 const express = require("express");
@@ -98,6 +103,7 @@ async function fetchCoordinatesFromGeonames(req, res) {
     endDate: endDate,
     notes: notes,
   };
+  console.log(userData);
   const userStartCity = encodeURI(destination);
   const fullGeonamesURL = combineGeonamesURL(userStartCity);
   console.log(
@@ -111,7 +117,6 @@ async function fetchCoordinatesFromGeonames(req, res) {
         country: data.country,
         latitude: data.geonames[0].lat,
         longitude: data.geonames[0].lng,
-        userData: userData,
       };
       printGeonamesProjectData(travelCoordinatesData);
     })
@@ -150,15 +155,10 @@ function tripLength(dateArray) {
 async function fetchCoordinatesFromWeatherbit(req, res) {
   const localLatitude = req.body.latitude;
   const localLongitude = req.body.longitude;
-  const localStartDate = req.body.userData.startDate;
-  const localEndDate = req.body.userData.endDate;
+  const localStartDate = travelPlannerData.userData.startDate;
+  const localEndDate = travelPlannerData.userData.endDate;
   const arrayDates = getDates(localStartDate, localEndDate);
   const durationTrip = tripLength(arrayDates);
-  const userDataIncludingGeoNames = {
-    travelCoordinatesData: req.body,
-    arrayDates: arrayDates,
-    durationTrip, durationTrip
-  }
   const fullWeatherbitURL = combineWeatherbitURL(
     localLatitude,
     localLongitude,
@@ -171,7 +171,8 @@ async function fetchCoordinatesFromWeatherbit(req, res) {
     .then((data) => {
       travelWeatherData = {
         STATUS: "Success",
-        userDataIncludingGeoNames: userDataIncludingGeoNames,
+        arrayDates: arrayDates,
+        durationTrip: durationTrip,
         weatherData = data
       }
     })
@@ -193,8 +194,8 @@ function combinePixabayPictureURL(geographyTerm) {
 }
 
 async function fetchImagesFromPixabay(req, res) {
-  const cityName = req.body.travelWeatherData.userDataIncludingGeoNames.name;
-  const countryName = req.body.travelWeatherData.userDataIncludingGeoNames.country;
+  const cityName = travelPlannerData.travelCoordinatesData.name;
+  const countryName = travelPlannerData.travelCoordinatesData.country;
   const cityNameModified = cityName.replace("%20", "+");
   const countryNameModified = countryName.replace("%20", "+");
   const fullCityPictureAPI = combinePixabayPictureURL(cityNameModified);
