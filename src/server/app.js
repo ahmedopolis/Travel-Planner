@@ -150,10 +150,15 @@ function tripLength(dateArray) {
 async function fetchCoordinatesFromWeatherbit(req, res) {
   const localLatitude = req.body.latitude;
   const localLongitude = req.body.longitude;
-  const localStartDate = req.body.startDate;
-  const localEndDate = req.body.endDate;
+  const localStartDate = req.body.userData.startDate;
+  const localEndDate = req.body.userData.endDate;
   const arrayDates = getDates(localStartDate, localEndDate);
   const durationTrip = tripLength(arrayDates);
+  const userDataIncludingGeoNames = {
+    travelCoordinatesData: req.body,
+    arrayDates: arrayDates,
+    durationTrip, durationTrip
+  }
   const fullWeatherbitURL = combineWeatherbitURL(
     localLatitude,
     localLongitude,
@@ -164,7 +169,11 @@ async function fetchCoordinatesFromWeatherbit(req, res) {
   );
   getData(fullWeatherbitURL)
     .then((data) => {
-      travelWeatherData = data;
+      travelWeatherData = {
+        STATUS: "Success",
+        userDataIncludingGeoNames: userDataIncludingGeoNames,
+        weatherData = data
+      }
     })
     .then((newTravelWeatherData) => {
       res.send(newTravelWeatherData);
@@ -183,7 +192,9 @@ function combinePixabayPictureURL(geographyTerm) {
   return `${pixabayBaseURL}key=${localApiPixabayKey}&q=${geographyTerm}&image_type=photo&orientation=horizontal&per_page=3&pretty=true`;
 }
 
-async function fetchImagesFromPixabay(cityName, countryName) {
+async function fetchImagesFromPixabay(req, res) {
+  const cityName = req.body.travelWeatherData.userDataIncludingGeoNames.name;
+  const countryName = req.body.travelWeatherData.userDataIncludingGeoNames.country;
   const cityNameModified = cityName.replace("%20", "+");
   const countryNameModified = countryName.replace("%20", "+");
   const fullCityPictureAPI = combinePixabayPictureURL(cityNameModified);
