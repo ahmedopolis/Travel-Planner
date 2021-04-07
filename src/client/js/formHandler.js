@@ -71,8 +71,17 @@ function runAction() {
     getDataURL,
     userData
   ) {
-    let postDataReturn = await postData(dataURL, data).then(async () => {});
+    let postGeonamesDataReturn = await postData(geonamesDataURL, userData).then(
+      async (data) => {
+        let postWeatherbitDataReturn = await postData(weatherbitDataURL, data);
+      }
+    ).then(async (data => {
+      let postPixabayDataReturn = await postData(pixabayDataURL, data);
+    })).then()
   }
+
+  //Update UI
+  
 
   // Function to concatenate Weatherbit icon URL
   function concatenateWeatherbitIconURL(iconCode) {

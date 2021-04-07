@@ -129,7 +129,7 @@ async function fetchCoordinatesFromGeonames(req, res) {
 
 let travelWeatherData = {};
 
-app.post("/weatherData", fetchCoordinatesFromWeatherbit);
+app.post("/weatherData", fetchWeatherbitData);
 
 function combineWeatherbitURL(latitude, longitude, durationTrip) {
   const weatherbitBaseURL = "https://api.weatherbit.io/v2.0/forecast/daily";
@@ -152,9 +152,9 @@ function tripLength(dateArray) {
   return dateArray.length;
 }
 
-async function fetchCoordinatesFromWeatherbit(req, res) {
-  const localLatitude = req.body.latitude;
-  const localLongitude = req.body.longitude;
+async function fetchWeatherbitData(req, res) {
+  const localLatitude = travelPlannerData.travelCoordinatesData.latitude;
+  const localLongitude = travelPlannerData.travelCoordinatesData.longitude;
   const localStartDate = travelPlannerData.userData.startDate;
   const localEndDate = travelPlannerData.userData.endDate;
   const arrayDates = getDates(localStartDate, localEndDate);
