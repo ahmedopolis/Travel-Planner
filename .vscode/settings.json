@@ -15,8 +15,10 @@
         "skyscanner",
         "toolchain",
         "traveldatabase",
+        "url",
         "userconfig",
         "weatherbit",
-        "weatherbit's"
+        "weatherbit's",
+        "webformat"
     ]
 }
