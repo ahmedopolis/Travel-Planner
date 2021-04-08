@@ -1,5 +1,8 @@
 import { updateUserInterface } from "./updateUI";
+import { regexCityName } from "./validCityName";
+import { checkOrderDate } from "./checkDates";
 
+//Function to manipulate data from DOM and bind other functions
 function runAction() {
   const submitButton = document.querySelector("#submit-button");
   submitButton.addEventListener("click", async (e) => {
@@ -7,60 +10,81 @@ function runAction() {
     const currentDate = new Date().toISOString().slice(0, 10);
     console.log("::: Form Submitted :::");
     const destination = document.querySelector("#destination").value;
+    const destinationBoolean = regexCityName(destination);
+    console.log(destinationBoolean);
     const startDate = document.querySelector("#start-date").value;
     const endDate = document.querySelector("#end-date").value;
+    const checkDatesBoolean = checkOrderDate(currentDate, startDate, endDate);
+    console.log(checkDatesBoolean);
     const notes = document.querySelector("#notes").value;
-    const userData = {
-      currentDate: currentDate,
-      destination: destination,
-      startDate: startDate,
-      endDate: endDate,
-      notes: notes,
-    };
-    printUserData(userData);
-    const hostName = "localhost";
-    const port = 8080;
-    const geonamesSubfolder = "coordinates";
-    const weatherbitSubfolder = "weatherData";
-    const pixabaySubfolder = "picturesData";
-    const getDataSubfolder = "apiData";
-    const localDataGeonamesURl = concatenateApiFilePath(
-      hostName,
-      port,
-      geonamesSubfolder
-    );
-    const localDataWeatherbitURl = concatenateApiFilePath(
-      hostName,
-      port,
-      weatherbitSubfolder
-    );
-    const localDataPixabayURl = concatenateApiFilePath(
-      hostName,
-      port,
-      pixabaySubfolder
-    );
-    const localGETApiURl = concatenateApiFilePath(
-      hostName,
-      port,
-      getDataSubfolder
-    );
-    console.log("::: All Folders used to gather data.  :::");
-    console.log(`The Geonames' Local Folder -> ${localDataGeonamesURl}`);
-    console.log(`The Weatherbit's Local Folder -> ${localDataWeatherbitURl}`);
-    console.log(`The Pixabay's Local Folder -> ${localDataPixabayURl}`);
-    console.log(`The GET Api's Local Folder -> ${localGETApiURl}`);
-    processUserData(
-      localDataGeonamesURl,
-      localDataWeatherbitURl,
-      localDataPixabayURl,
-      localGETApiURl,
-      userData
-    );
+    if (destinationBoolean && checkDatesBoolean) {
+      const userData = {
+        currentDate: currentDate,
+        destination: destination,
+        startDate: startDate,
+        endDate: endDate,
+        notes: notes,
+      };
+      printUserData(userData);
+      const hostName = "localhost";
+      const port = 8080;
+      const geonamesSubfolder = "coordinates";
+      const weatherbitSubfolder = "weatherData";
+      const pixabaySubfolder = "picturesData";
+      const getDataSubfolder = "apiData";
+      const localDataGeonamesURl = concatenateApiFilePath(
+        hostName,
+        port,
+        geonamesSubfolder
+      );
+      const localDataWeatherbitURl = concatenateApiFilePath(
+        hostName,
+        port,
+        weatherbitSubfolder
+      );
+      const localDataPixabayURl = concatenateApiFilePath(
+        hostName,
+        port,
+        pixabaySubfolder
+      );
+      const localGETApiURl = concatenateApiFilePath(
+        hostName,
+        port,
+        getDataSubfolder
+      );
+      printFolders(
+        localDataGeonamesURl,
+        localDataWeatherbitURl,
+        localDataPixabayURl,
+        localGETApiURl
+      );
+      processUserData(
+        localDataGeonamesURl,
+        localDataWeatherbitURl,
+        localDataPixabayURl,
+        localGETApiURl,
+        userData
+      );
+    }
   });
 
   // Function to concatenate the file path for an api route
   function concatenateApiFilePath(hostName, port, subfolder) {
     return `http://${hostName}:${port}/${subfolder}`;
+  }
+
+  // Function to print folders
+  function printFolders(
+    localDataGeonamesURl,
+    localDataWeatherbitURl,
+    localDataPixabayURl,
+    localGETApiURl
+  ) {
+    console.log("::: All Folders used to gather data.  :::");
+    console.log(`The Geonames' Local Folder -> ${localDataGeonamesURl}`);
+    console.log(`The Weatherbit's Local Folder -> ${localDataWeatherbitURl}`);
+    console.log(`The Pixabay's Local Folder -> ${localDataPixabayURl}`);
+    console.log(`The GET Api's Local Folder -> ${localGETApiURl}`);
   }
 
   // Function to print user data
