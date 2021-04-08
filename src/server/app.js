@@ -41,11 +41,11 @@ app.use(cors());
 app.use(express.static("dist"));
 
 //Create new database object and load database
-/* const database = new dataStore({
+const database = new dataStore({
   filename: "src/server/traveldatabase.db",
   autoload: true,
 });
-database.loadDatabase(); */
+database.loadDatabase();
 
 let moment = require("moment"); // require
 const { encode } = require("punycode");
@@ -62,6 +62,7 @@ function sendTravelData(req, res) {
     travelWeatherData: travelWeatherData,
     travelPictureData: travelPictureData,
   };
+  database.insert(travelPlannerData);
   console.log(travelPlannerData);
   res.send(travelPlannerData);
 }
@@ -180,8 +181,6 @@ async function fetchWeatherbitData(req, res) {
     };
     res.send(travelWeatherData);
     console.log(travelWeatherData);
-    //Icon -> travelWeatherData.weatherData.data[index].weather.icon
-    //Description -> travelWeatherData.weatherData.data[index].weather.description
   });
 }
 
