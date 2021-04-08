@@ -1,6 +1,10 @@
-$primary-color: red;
-$secondary-color: #f2f2f2;
-$tertiary-color: darkgreen;
+$primary-color: rgb(161, 4, 4);
+$secondary-color: rgb(245, 212, 212);
+$tertiary-color: rgb(78, 199, 78);
+$quaternary-color: rgb(165, 8, 165);
+$quinary-color: rgb(240, 133, 133);
+$senary-color: rgb(117, 206, 65);
+$septenary-color: rgb(127, 197, 199);
 
 #form-section {
     grid-area: form;
@@ -8,8 +12,8 @@ $tertiary-color: darkgreen;
     justify-content:center;
     flex-direction:column;
     align-items: center;
-    background-color: lightcoral;
-    border: darkmagenta solid 3px;
+    background-color: $quinary-color;
+    border: $quaternary-color solid 3px;
     border-radius: 5px;
     width: auto;
     padding: 2%;
@@ -64,7 +68,7 @@ input {
 }
 
 #notes {
-    background-color: red;
+    background-color: $primary-color;
     color: $secondary-color;
     font-family: 'Oswald', sans-serif;
     font-size: 15px;

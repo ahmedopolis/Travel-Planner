@@ -1,3 +1,11 @@
+$primary-color: rgb(161, 4, 4);
+$secondary-color: rgb(245, 212, 212);
+$tertiary-color: rgb(78, 199, 78);
+$quaternary-color: rgb(165, 8, 165);
+$quinary-color: rgb(240, 133, 133);
+$senary-color: rgb(117, 206, 65);
+$septenary-color: rgb(127, 197, 199);
+
 #results-section{
     grid-area: results;
     display: grid;
@@ -13,8 +21,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: lightgreen;
-    border: darkmagenta solid 3px;
+    background-color: $senary-color;
+    border: $quaternary-color solid 3px;
     border-radius: 5px;
     margin-top: 3.5%;
     padding: 2%;
@@ -24,7 +32,7 @@
     width: 400px;
     height: 300px;
     margin: 3%;
-    border: darkmagenta solid 3px;
+    border: $quaternary-color solid 3px;
     border-radius: 5px;
 }
 
@@ -32,19 +40,20 @@
     margin-left: 5%;
     padding: 2%;
     margin-bottom: 3%;
+    color: $quinary-color;
 
     strong {
-        color:cadetblue;
+        color: $septenary-color;
         -webkit-text-stroke-width: 0.5px;
-        -webkit-text-stroke-color: darkmagenta;
+        -webkit-text-stroke-color: $quaternary-color;
     }
 
     #trip-result-title{
         font-size: 45px;
         text-align: center;
-        color: lightsalmon;
+        color: $secondary-color;
         -webkit-text-stroke-width: 1px;
-        -webkit-text-stroke-color: darkmagenta;
+        -webkit-text-stroke-color: $quaternary-color;
     }
 }
 
@@ -58,8 +67,8 @@
 
 .weather-summary {
     text-align: center;
-    background-color: lightskyblue;
-    border: darkmagenta solid 3px;
+    background-color: $septenary-color;
+    border: $quaternary-color solid 3px;
     border-radius: 5px;
     margin-top: 1%;
     margin: 3%;

@@ -1,3 +1,11 @@
+$primary-color: rgb(161, 4, 4);
+$secondary-color: rgb(245, 212, 212);
+$tertiary-color: rgb(78, 199, 78);
+$quaternary-color: rgb(165, 8, 165);
+$quinary-color: rgb(240, 133, 133);
+$senary-color: rgb(117, 206, 65);
+$septenary-color: rgb(127, 197, 199);
+
 footer {
   grid-area: footer;
   text-align: center;
@@ -5,14 +13,14 @@ footer {
   width: 100%;
   bottom: 0;
   clear: both;
-  position: relative; //toggle relative and fixed
+  position: relative; 
 }
   
 #footer-text {
-  color: whitesmoke;
+  color: $tertiary-color;
   font-weight: bold;
   text-align: center;
   font-size: 30px;
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: darkmagenta;
+  -webkit-text-stroke-color: $quaternary-color;
 }
