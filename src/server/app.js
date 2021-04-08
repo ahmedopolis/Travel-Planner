@@ -69,21 +69,21 @@ function sendTravelData(req, res) {
 
 /* POST ROUTES */
 
-// Post route for geonames
+// Post route for geoNames
 
-app.post("/coordinates", fetchCoordinatesFromGeonames);
+app.post("/coordinates", fetchCoordinatesFromGeoNames);
 
-function combineGeonamesURL(city) {
-  const apiGeoNamesKey = process.env.GeoNames_Username || "No Geonames API key";
-  console.log(`The Geonames API key is the following: ${apiGeoNamesKey}`);
-  const geonamesBaseURL = "http://api.geonames.org/searchJSON?";
+function combineGeoNamesURL(city) {
+  const apiGeoNamesKey = process.env.GeoNames_Username || "No GeoNames API key";
+  console.log(`The GeoNames API key is the following: ${apiGeoNamesKey}`);
+  const geoNamesBaseURL = "http://api.geoNames.org/searchJSON?";
   const localApiGeoNamesKey = apiGeoNamesKey;
-  return `${geonamesBaseURL}q=${city}&maxRows=1&username=${localApiGeoNamesKey}`;
+  return `${geoNamesBaseURL}q=${city}&maxRows=1&username=${localApiGeoNamesKey}`;
 }
 
 //Function to print travel data
-function printGeonamesProjectData(projectData) {
-  console.log("::: Geonames Data Requested Loaded :::");
+function printGeoNamesProjectData(projectData) {
+  console.log("::: geoNames Data Requested Loaded :::");
   console.log(`Name -> ${projectData.name}.`);
   console.log(`Country -> ${projectData.country}.`);
   console.log(`Latitude -> ${projectData.latitude}.`);
@@ -107,7 +107,7 @@ function tripLength(dateArray) {
   return dateArray.length;
 }
 
-async function fetchCoordinatesFromGeonames(req, res) {
+async function fetchCoordinatesFromGeoNames(req, res) {
   const currentDate = req.body.currentDate;
   const destination = req.body.destination;
   const startDate = req.body.startDate;
@@ -129,11 +129,11 @@ async function fetchCoordinatesFromGeonames(req, res) {
   };
   console.log(userData);
   const userStartCity = encodeURI(destination);
-  const fullGeonamesURL = combineGeonamesURL(userStartCity);
+  const fullGeoNamesURL = combineGeoNamesURL(userStartCity);
   console.log(
-    `::: The concatenated API's URL is the following: ${fullGeonamesURL}. :::`
+    `::: The concatenated API's URL is the following: ${fullGeoNamesURL}. :::`
   );
-  getData(fullGeonamesURL).then((data) => {
+  getData(fullGeoNamesURL).then((data) => {
     console.log(data);
     travelCoordinatesData = {
       STATUS: "Success",
@@ -142,7 +142,7 @@ async function fetchCoordinatesFromGeonames(req, res) {
       latitude: data.geonames[0].lat,
       longitude: data.geonames[0].lng,
     };
-    printGeonamesProjectData(travelCoordinatesData);
+    printGeoNamesProjectData(travelCoordinatesData);
     res.send(travelCoordinatesData);
   });
 }

@@ -28,14 +28,14 @@ function runAction() {
       printUserData(userData);
       const hostName = "localhost";
       const port = 8080;
-      const geonamesSubfolder = "coordinates";
+      const geoNamesSubfolder = "coordinates";
       const weatherbitSubfolder = "weatherData";
       const pixabaySubfolder = "picturesData";
       const getDataSubfolder = "apiData";
-      const localDataGeonamesURl = concatenateApiFilePath(
+      const localDataGeoNamesURl = concatenateApiFilePath(
         hostName,
         port,
-        geonamesSubfolder
+        geoNamesSubfolder
       );
       const localDataWeatherbitURl = concatenateApiFilePath(
         hostName,
@@ -53,13 +53,13 @@ function runAction() {
         getDataSubfolder
       );
       printFolders(
-        localDataGeonamesURl,
+        localDataGeoNamesURl,
         localDataWeatherbitURl,
         localDataPixabayURl,
         localGETApiURl
       );
       processUserData(
-        localDataGeonamesURl,
+        localDataGeoNamesURl,
         localDataWeatherbitURl,
         localDataPixabayURl,
         localGETApiURl,
@@ -75,13 +75,13 @@ function runAction() {
 
   // Function to print folders
   function printFolders(
-    localDataGeonamesURl,
+    localDataGeoNamesURl,
     localDataWeatherbitURl,
     localDataPixabayURl,
     localGETApiURl
   ) {
     console.log("::: All Folders used to gather data.  :::");
-    console.log(`The Geonames' Local Folder -> ${localDataGeonamesURl}`);
+    console.log(`The GeoNames' Local Folder -> ${localDataGeoNamesURl}`);
     console.log(`The Weatherbit's Local Folder -> ${localDataWeatherbitURl}`);
     console.log(`The Pixabay's Local Folder -> ${localDataPixabayURl}`);
     console.log(`The GET Api's Local Folder -> ${localGETApiURl}`);
@@ -99,13 +99,13 @@ function runAction() {
 
   // Async function to chain promises
   async function processUserData(
-    geonamesDataURL,
+    geoNamesDataURL,
     weatherbitDataURL,
     pixabayDataURL,
     getDataURL,
     userData
   ) {
-    let postGeonamesDataReturn = await postData(geonamesDataURL, userData).then(
+    let postGeoNamesDataReturn = await postData(geoNamesDataURL, userData).then(
       (data1) => {
         let postWeatherbitDataReturn = postData(weatherbitDataURL, data1).then(
           (data2) => {
