@@ -257,6 +257,7 @@ npm install terser-webpack-plugin --save-dev
 npm install --save-dev optimize-css-assets-webpack-plugin
 npm install workbox-webpack-plugin --save-dev
 npm i nedb
+npm install punycode --save
 ```
 
 ## Examples
