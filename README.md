@@ -289,6 +289,18 @@ Pixabay Api Docs: https://pixabay.com/api/docs/
 
 ## Examples
 
+### Example of hovering page
+
+![Hover Page](video/travelplannercityhover.gif)
+
+### Example of input data and seeing UI update
+
+![Generate Data](video/travelplannercitydesiredresults.gif)
+
+### Example of error-handling
+
+![Error handling](video/travelplannercityexceptionhandling.gif)
+
 ## Tools
 
 This webpage uses the following technologies for the front-end: HTML, SASS, and JavaScript (Vanilla). It also uses JavaScript on the server-side with Node.js and Express.js. The static module bundle used is Webpack. For testing, Jest is used and the database module is NeDB.
