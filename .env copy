@@ -1,0 +1,14 @@
+# Server Port
+Server_Port = 8080
+
+# Host name
+Host_Name = localhost
+
+# Weatherbit
+Weatherbit_Api_Key = 
+
+#GeoNames
+GeoNames_Username = 
+
+#Pixabay
+Pixabay_Api_Key = 
