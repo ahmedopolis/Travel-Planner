@@ -7,6 +7,7 @@ import "./styles/header.scss";
 import "./styles/form.scss";
 import "./styles/results.scss";
 
+// Function to append the 'runAction' function at after load.
 function loadStarter() {
   if (document.readyState === "complete") {
     window.addEventListener("load", runAction);

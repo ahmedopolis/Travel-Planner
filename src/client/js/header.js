@@ -1,10 +1,4 @@
-/**
- * @description This function contains three other functions. The 'loadRainbowMainHeadingText'
- * function is run once the whole page is loaded. Only the first 'h1' is modified. There's also
- * one heading of 'h1' in 'index/html'. In the 'generateRandomRainbowMainHeading' function, the
- * inner html code of 'h1' is cleared. At every character of the first heading, each character's
- * color is changed at random using the 'randomColorString' function.
- */
+// Function to randomize page header colors
 function mainHeadingRandomColorEdit() {
   window.addEventListener("load", loadRainbowMainHeadingText);
   function loadRainbowMainHeadingText() {
