@@ -122,8 +122,8 @@ async function fetchCoordinatesFromGeonames(req, res) {
     startDate: startDate,
     endDate: endDate,
     countdown: countdown,
-    durationTrip,
-    durationTrip,
+    durationTrip: durationTrip,
+    arrayDatesForDurationTrip: arrayDatesForDurationTrip,
     notes: notes,
   };
   console.log(userData);
