@@ -42,10 +42,18 @@ function runAction() {
       port,
       getDataSubfolder
     );
-    console.log(`The Geonames' URL -> ${localDataGeonamesURl}`);
-    console.log(`The Weatherbit's URL -> ${localDataWeatherbitURl}`);
-    console.log(`The Pixabay's URL -> ${localDataPixabayURl}`);
-    console.log(`The GET Api's URL -> ${localGETApiURl}`);
+    console.log("::: All Folders used to gather data.  :::");
+    console.log(`The Geonames' Local Folder -> ${localDataGeonamesURl}`);
+    console.log(`The Weatherbit's Local Folder -> ${localDataWeatherbitURl}`);
+    console.log(`The Pixabay's Local Folder -> ${localDataPixabayURl}`);
+    console.log(`The GET Api's Local Folder -> ${localGETApiURl}`);
+    processUserData(
+      localDataGeonamesURl,
+      localDataWeatherbitURl,
+      localDataPixabayURl,
+      localGETApiURl,
+      userData
+    );
   });
 
   // Function to concatenate the file path for an api route
@@ -72,16 +80,48 @@ function runAction() {
     userData
   ) {
     let postGeonamesDataReturn = await postData(geonamesDataURL, userData).then(
-      async (data) => {
-        let postWeatherbitDataReturn = await postData(weatherbitDataURL, data);
+      (data1) => {
+        let postWeatherbitDataReturn = postData(weatherbitDataURL, data1).then(
+          (data2) => {
+            let postPixabayDataReturn = postData(pixabayDataURL, data2).then(
+              async (data3) => {
+                let updateUI = await updateUserInterface(getDataURL, data3);
+              }
+            );
+          }
+        );
       }
-    ).then(async (data => {
-      let postPixabayDataReturn = await postData(pixabayDataURL, data);
-    })).then()
+    );
   }
 
-  //Update UI
-  
+  /* Function fetch sentimental data and to update UI respectively */
+  async function updateUserInterface(dataURL) {
+    let results = document.querySelector("#results-section");
+    let getUserData = await getData(dataURL).then(async (data) => {
+      let resultsSection1 = document.createElement("section");
+      resultsSection1.id = "first-results-section";
+      resultsSection1.innerHTML = `<div id="pixabay-image"><img src=${data.travelPictureData.picture}></div>
+      <div id="first-results-text">
+        <p id="trip-result-title">Your Trip Results</p>
+        <div id="current-date-results"><strong>Current Date: </strong>${data.userData.currentDate}.</div>
+        <div id="start-date-results"><strong>Start Date: </strong>${data.userData.startDate}.</div>
+        <div id="end-date-results"><strong>End Date: </strong>${data.userData.endDate}.</div>
+        <div id="countdown-results"><strong>Countdown: </strong>${data.userData.countdown} day(s) remaining.</div>
+        <div id="length-trip-results"><strong>Length of Trip: </strong>${data.userData.durationTrip} day(s).</div>
+        <div id="destination-results"><strong>Destination: </strong>${data.travelCoordinatesData.name}.</div>
+        <div id="country-results"><strong>Country: </strong>${data.travelCoordinatesData.country}.</div>
+        <div id="latitude-results"><strong>Latitude: </strong>${data.travelCoordinatesData.latitude}° N.</div>
+        <div id="longitude-results"><strong>Longitude: </strong>${data.travelCoordinatesData.longitude}° W.</div>
+        <div id="notes-results"><strong>Notes: </strong>${data.userData.notes}</div>
+      </div>`;
+
+      let resultsSection2 = document.createElement("section");
+      resultsSection2.id = "second-results-section";
+      results.appendChild(resultsSection1);
+      results.appendChild(resultsSection2);
+    });
+    return getUserData;
+  }
 
   // Function to concatenate Weatherbit icon URL
   function concatenateWeatherbitIconURL(iconCode) {
