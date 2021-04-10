@@ -4,8 +4,8 @@ if (process.env.NODE_ENV !== "production") {
   dotenv.config();
 }
 
-// Module to enable request via hyper text transfer protocol
-const http = require("http");
+// Response for mockAPI
+const mockApiRes = require("./mockAPI");
 
 // Setup empty JS object to act as endpoint for all routes
 let travelPlannerData = {};
@@ -16,6 +16,9 @@ let userData = {};
 
 // Express to run server and routes
 const express = require("express");
+
+// HTTP assertions https://www.npmjs.com/package/supertest
+const request = require("supertest");
 
 // Type1: In-memory only datastore (no need to load the database)
 let dataStore = require("nedb");
@@ -51,6 +54,8 @@ let moment = require("moment"); // require
 const { encode } = require("punycode");
 moment().format();
 
+/* GET ROUTES */
+
 // Initialize all route with a callback function
 app.get("/apiData", sendTravelData);
 
@@ -64,7 +69,15 @@ function sendTravelData(req, res) {
   };
   database.insert(travelPlannerData);
   console.log(travelPlannerData);
-  res.send(travelPlannerData);
+  res.status(200).send(travelPlannerData);
+}
+
+//  GET function for Test
+app.get("/Test", sendTestData);
+
+// Callback function to complete GET '/Test'
+function sendTestData(req, res) {
+  res.status(200).send(mockApiRes);
 }
 
 /* POST ROUTES */
@@ -143,7 +156,7 @@ async function fetchCoordinatesFromGeoNames(req, res) {
       longitude: data.geonames[0].lng,
     };
     printGeoNamesProjectData(travelCoordinatesData);
-    res.send(travelCoordinatesData);
+    res.status(200).send(travelCoordinatesData);
   });
 }
 
@@ -179,7 +192,7 @@ async function fetchWeatherbitData(req, res) {
       STATUS: "Success",
       weatherData: data,
     };
-    res.send(travelWeatherData);
+    res.status(200).send(travelWeatherData);
     console.log(travelWeatherData);
   });
 }
@@ -217,7 +230,7 @@ async function fetchImagesFromPixabay(req, res) {
       travelPictureData = {
         picture: pictureURL,
       };
-      res.send(travelPictureData);
+      res.status(200).send(travelPictureData);
       console.log(`::: One or more City images were found. :::`);
       console.log(newCityPicturesData);
       console.log(pictureURL);
@@ -228,7 +241,7 @@ async function fetchImagesFromPixabay(req, res) {
           travelPictureData = {
             picture: pictureURL,
           };
-          res.send(travelPictureData);
+          res.status(200).send(travelPictureData);
           console.log(`::: One or more Country images were found. :::`);
           console.log(newCountryPicturesData);
           console.log(pictureURL);
@@ -253,15 +266,5 @@ async function getData(url = "") {
   }
 }
 
-// Setup server
-const port = process.env.Server_Port || 8000;
-const hostName = process.env.Host_Name || "localhost";
-const localServer = http.createServer(app);
-
-// Spin up the server
-localServer.listen(port, listening);
-
-// Callback to debug
-function listening() {
-  console.log(`Server is running on http://${hostName}: ${port}`);
-}
+// Export 'app.js'
+module.exports = app;
