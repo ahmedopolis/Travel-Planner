@@ -249,6 +249,22 @@ Add 'punycode' via the following command:
 npm install punycode --save
 ```
 
+### Add 'Babel-polyfill'
+
+Add 'Babel-polyfill' via the following command:
+
+```bash
+npm install --save @babel/polyfill
+```
+
+### Add 'supertest babel-cli superagent'
+
+Add 'supertest' via the following command:
+
+```bash
+npm install supertest --save-dev
+```
+
 ### List of all needed npm commands
 
 All commands needed are found below:
@@ -275,6 +291,8 @@ npm install --save-dev optimize-css-assets-webpack-plugin
 npm install workbox-webpack-plugin --save-dev
 npm i nedb
 npm install punycode --save
+npm install --save @babel/polyfill
+npm install supertest babel-cli superagent --save-dev
 ```
 
 ## Fetch Api keys
