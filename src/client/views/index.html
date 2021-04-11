@@ -9,50 +9,57 @@
     <meta name="author" content="Ahmed Ibrahim" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
+  <!-- header of page. -->
+  <header>
+    <nav><h1 id="website-title">WoRlDnOmAd</h1></nav>
+  </header>
   <body>
-    <!-- header of page. -->
-    <header>
-      <nav><h1 id="website-title">WoRlDnOmAd</h1></nav>
-    </header>
     <!-- All sections of page. -->
-    <main id="app-container">
-      <section id="form-section">
-        <h2 class="section-title">
-          Enter your trip data below to generate your report.
-        </h2>
-        <form id="input-section">
-          <label for="destination"> Destination:</label>
-          <input
-            id="destination"
-            value=""
-            type="text"
-            name="city"
-            placeholder="What is your desired destination?"
-            required
-          />
-          <label for="start-date"> Start Date:</label>
-          <input
-            id="start-date"
-            value=""
-            type="date"
-            name="start-date"
-            required
-          />
-          <label for="end-date"> End Date:</label>
-          <input id="end-date" value="" type="date" name="end-date" required />
-          <label for="notes">Do you have notes on this trip?</label>
-          <textarea
-            id="notes"
-            placeholder="Enter your notes here."
-            rows="9"
-            cols="52"
-            required
-          ></textarea>
-          <button id="submit-button" type="submit">Generate</button>
-        </form>
-      </section>
-      <section id="results-section">
-        <!-- <section id="first-results-section">
+    <main>
+      <div id="app-container">
+        <section id="form-section">
+          <h2 class="section-title">
+            Enter your trip data below to generate your report.
+          </h2>
+          <form id="input-section">
+            <label for="destination"> Destination:</label>
+            <input
+              id="destination"
+              value=""
+              type="text"
+              name="city"
+              placeholder="What is your desired destination?"
+              required
+            />
+            <label for="start-date"> Start Date:</label>
+            <input
+              id="start-date"
+              value=""
+              type="date"
+              name="start-date"
+              required
+            />
+            <label for="end-date"> End Date:</label>
+            <input
+              id="end-date"
+              value=""
+              type="date"
+              name="end-date"
+              required
+            />
+            <label for="notes">Do you have notes on this trip?</label>
+            <textarea
+              id="notes"
+              placeholder="Enter your notes here."
+              rows="9"
+              cols="52"
+              required
+            ></textarea>
+            <button id="submit-button" type="submit">Generate</button>
+          </form>
+        </section>
+        <section id="results-section">
+          <!-- <section id="first-results-section">
           <div id="pixabay-image"><img src="https://westborobeachcommunity.files.wordpress.com/2021/01/cropped-under-the-bridge-shot.jpg"></div>
           <div id="first-results-text">
             <p id="trip-result-title">Your Trip Results</p>
@@ -90,8 +97,9 @@
           <div id="temperature-results">15 &#8451</div>
           <div id="weather-description-results">Broken clouds</div>
         </div>
+        </section>
         </section> -->
-      </section>
+      </div>
     </main>
     <!-- Footer of page  -->
     <footer>
