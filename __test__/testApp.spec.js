@@ -1,5 +1,4 @@
 // Fetch 'app.js' and the 'supertest' module
-const supertest = require("supertest");
 const request = require("supertest");
 const regeneratorRuntime = require("regenerator-runtime");
 
@@ -27,23 +26,27 @@ describe("Test the root path for both folders", () => {
 });
 
 // Test the POST method for the coordinates data
-test("Test the POST routes for GeoNames response", async (done) => {
-  const travelCoordinatesData = {
-    name: "Mataram",
-    country: "Indonesia",
-    latitude: "-8.58333",
-    longitude: "116.11667",
-  };
+describe("Test the POST routes for GeoNames response", () => {
+  test("Functional POST method", async (done) => {
+    const travelCoordinatesData = {
+      name: "Mataram",
+      country: "Indonesia",
+      latitude: "-8.58333",
+      longitude: "116.11667",
+    };
 
-  await supertest(app)
-    .post("/coordinates")
-    .send(travelCoordinatesData)
-    .expect(200)
-    .then((response) => {
-      expect(response.body.name).toBe(travelCoordinatesData.name);
-      expect(response.body.country).toBe(travelCoordinatesData.country);
-      expect(response.body.latitude).toEqual(travelCoordinatesData.latitude);
-      expect(response.body.longitude).toEqual(travelCoordinatesData.longitude);
-      done();
-    });
+    await request(app)
+      .post("/coordinates")
+      .send(travelCoordinatesData)
+      .expect(200)
+      .then((response) => {
+        expect(response.body.name).toBe(travelCoordinatesData.name);
+        expect(response.body.country).toBe(travelCoordinatesData.country);
+        expect(response.body.latitude).toEqual(travelCoordinatesData.latitude);
+        expect(response.body.longitude).toEqual(
+          travelCoordinatesData.longitude
+        );
+        done();
+      });
+  });
 });
